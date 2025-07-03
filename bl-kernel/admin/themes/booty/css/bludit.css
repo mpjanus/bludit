@@ -280,10 +280,10 @@ td.child {
 #jseditorSidebar {
 	display: none;
 	height: calc(100% - 45px);
-	width: 50%;
+	width: 350px;
 	max-width: 350px;
-	position: absolute;
-	z-index: 50;
+	/* position: absolute; */
+	/* z-index: 50; */
 	top: 45px;
 	right: 15px;
 	background-color: #fff;
@@ -294,12 +294,51 @@ td.child {
 	border-top: 1px solid #ccc;
 }
 
-@media (max-width: 575.98px) {
+#jseditorHorDivider {
+}
+#editorSidebarCol {
+}
+
+#editorContentCol {
+}
+
+.optionsExpanded {
+	width: 300px;
+}
+.optionsCollapsed {
+	width: 0px;
+}
+
+@media (max-width: 1024px) {
+	#jseditorHorDivider {
+	}
 	#jseditorSidebar {
 		width: 100%;
 		max-width: 100%;
+		/*
 		right: 0;
+		position: absolute;
+		z-index: 50; */
 	}
+
+	#editorSidebarCol, #editorContentCol {
+		width: 100%;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	#editorSidebarCol {
+		order: 1;
+	}
+
+	#editorContentCol {
+		order: 2;
+	}
+}
+
+
+@media (max-width: 575.98px) {
+
 
 	#jseditorToolbarRight button {
 		font-size: 0px !important;

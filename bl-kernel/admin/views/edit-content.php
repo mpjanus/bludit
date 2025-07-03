@@ -65,17 +65,33 @@ echo Bootstrap::formInputHidden(array(
 </div>
 <script>
 	$(document).ready(function() {
+		// Check localStorage for saved sidebar state
+		var sidebarVisible = localStorage.getItem('sidebarVisible');
+		if (sidebarVisible === 'true') {
+			$("#jseditorSidebar").show();
+		} else {
+			$("#jseditorSidebar").hide();
+		}
+
 		$("#jsoptionsSidebar").on("click", function() {
 			$("#jseditorSidebar").toggle();
-			$("#jsshadow").toggle();
+			// Save state to localStorage
+			localStorage.setItem('sidebarVisible', $("#jseditorSidebar").is(":visible"));
+			// $("#jsshadow").toggle();
 		});
 
 		$("#jsshadow").on("click", function() {
 			$("#jseditorSidebar").toggle();
+			// Save state to localStorage
+			localStorage.setItem('sidebarVisible', $("#jseditorSidebar").is(":visible"));
 			$("#jsshadow").toggle();
 		});
 	});
 </script>
+
+<div id="jseditorHorDivider" class="container">
+  <div class="row" style="height: calc(100vh - 120px);">
+    <div id="editorSidebarCol" class="col-auto order-md-2">
 
 <!-- SIDEBAR OPTIONS -->
 <div id="jseditorSidebar">
@@ -396,6 +412,8 @@ foreach ($customFields as $field => $options) {
 }
 ?>
 
+    </div> <!-- eof column sidebar -->
+    <div id="editorContentCol" class="col order-md-1">
 <!-- Title -->
 <div class="form-group mb-1">
 	<input id="jstitle" name="title" type="text" dir="auto" class="form-control form-control-lg rounded-0" value="<?php echo $page->title() ?>" placeholder="<?php $L->p('Enter title') ?>">
@@ -434,7 +452,9 @@ foreach ($customFields as $field => $options) {
 	}
 }
 ?>
-
+    </div> <!-- eof column content -->
+  </div><!-- eof hor divider row -->
+</div> <!--  eof container -->
 </form>
 
 <!-- Modal for Delete page -->
